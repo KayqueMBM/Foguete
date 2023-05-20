@@ -28,13 +28,44 @@
             top: 200px;
             left: 20%;
         }
+        .goku{
+            position: absolute;
+            top:100px;
+            left: 70%;
+        }
+        .barra_branca{
+            position: absolute;
+            top: 720px;
+            width: 400px;
+            height: 70px;
+            background-color: darkblue;
+            color: white;
+            justify-content: center;
+            align-items: center;
+            font-size: 15px;
+            font-family: 'Quicksand', sans-serif;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <img src="Planeta-Terra.png" class="terra" width="400px">
+    <img src="goku.gif" class="goku" width="300px">
     <img src="lua-nova.png" class="lua" width="1000px">
     <img id="foguete" src="foguete.gif" width="80px" class="foguete">
-</body>
+    
+    
+    <div class="barra_branca">
+        <h1>Kayque Marcelo</h1>
+    </div>
+    
+    <audio controls autoplay>
+
+        <source src="contagem_regressiva.mp3" type="audio/mp3">
+      
+        <source src="lancamento_foguete.mp3" type="audio/mp3">
+      
+      </audio>
 
 <script src="jquery-3.7.0.min.js"></script>
 
@@ -78,7 +109,7 @@ document.onkeydown = Pega_Tecla;
   }
     
     temporizador = setTimeout(Subir,1000)
-    x = 450
+    x = 700
     y = 20
     TOPO = ""
     ESQUERDA = ""
