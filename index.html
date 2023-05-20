@@ -59,79 +59,110 @@
         <h1>Kayque Marcelo</h1>
     </div>
     
-    <audio controls autoplay>
-
+    <audio id="audio">
         <source src="contagem_regressiva.mp3" type="audio/mp3">
-      
+    </audio>
+    <audio id="audio2">
         <source src="lancamento_foguete.mp3" type="audio/mp3">
-      
-      </audio>
-
-<script src="jquery-3.7.0.min.js"></script>
-
+    </audio>
+    <audio id="audio3">
+        <source src="audio.mp3" type="audio/wav">
+    </audio>
+</body>
+<script src="jquery-3.7.0.min.js"></script>  
 <script>
+    var audio = new Audio();
+    audio.src = 'contagem_regressiva.mp3';
+    var audio2 = new Audio();
+    audio2.src = 'lancamento_foguete.mp3';
+    var audio3 = new Audio('we-have-a-problem.mp3');
+    audio2.src = 'audio.mp3';
+    function playAudio() 
+    {
+        audio.play();
+    }
+    setTimeout(playAudio, 500)
 
-// Vamos pegar o tempo inicial:
+    function playAudio2() 
+    {
+        audio2.play();
+    }
+    setTimeout(playAudio2, 15000)
 
+    function pausarAudio()
+    {
+        audio.pause()
+    }
+    setTimeout(pausarAudio, 15000)
+
+    function pausarAudio2()
+    {
+        audio2.pause()
+    }
+    setTimeout(pausarAudio2, 20000)
+    function playAudio3() 
+    {
+        audio3.play();
+    }
+    setTimeout(playAudio3, 20000)
+    function pausarAudio3()
+    {
+        audio2.pause()
+    }
+    setTimeout(pausarAudio3, 25000)
 data = new Date()
 tempo_inicial = data.getTime()
 
 document.onkeydown = Pega_Tecla;
-  
-  function Pega_Tecla(e) 
-  {   
-      var texto  = e;
-      e = e || window.event;
-      tecla = e.keyCode;
+function Pega_Tecla(e) 
+{   
+    e = e || window.event;
 
-      console.log(tecla); // MOSTRA O CÓDIGO DA TECLA PRESSIONADA
-
+    tecla = e.keyCode;
+    console.log(tecla); // MOSTRA O CÓDIGO DA TECLA PRESSIONADA
+    
     data = new Date()
-    tempo_final = data.getTime() // Tempo em milissegundos
-
-    if(tempo_final - tempo_inicial > 1000)
+    tempo_final = data.getTime()
+    
+    if(tempo_final-tempo_inicial > 1000)
     {
         tempo_inicial = tempo_final
+        if (tecla==37)
+        {
+            x = x - 20
+        }
+        if (tecla==39)
+        {
+            x = x + 20
+        }
     }
-
-    if(tecla == 37)
-
-    {
-    x = x - 20
-    }
-
-    if(tecla == 39)
-
-    {
-    x = x + 20
-    }
-  
-  }
-    
-    temporizador = setTimeout(Subir,1000)
-    x = 700
-    y = 20
-    TOPO = ""
-    ESQUERDA = ""
-    function Subir() 
+}
+x = 750
+y = 50
+TOPO = ""
+ESQUERDA = ""
+temporizador2 = setTimeout(Subir, 10000)
+function Subir()
     {
         TOPO = y + "px"
-        $("#foguete").animate({top:TOPO},1000)
-        temporizador = null
-        temporizador = setInterval(Descer,1000)
+        $("#foguete").animate({top:TOPO}, 1000)
+        temporizador2 = null
+        temporizador2 = setInterval( Descer, 1000)
+
     }
-    function Descer()
+function Descer()
+    {
+        y = y + 40
+
+        TOPO = y + "px"
+        ESQUERDA = x + "px"
+        $("#foguete").animate({left:ESQUERDA, top:TOPO}, 1000)
+        
+        if (y > 580)
         {
-            y = y + 20
-            //Limitar para não sair da tela:
-            if(y>600)
-            {
-                y = 600
-            }
-            TOPO = y + "px"
-            ESQUERDA = x + "px"
-        $("#foguete").animate({left:ESQUERDA, top:TOPO},1000)
+            y = 580
         }
+    }
 
 </script>
 </html>
