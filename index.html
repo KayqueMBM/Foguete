@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foguete de Kayque</title>
+    <style>
+        body{
+            width: 100%;
+            height: 100vh;
+            background-image: linear-gradient(45deg, black, rgb(0, 0, 0));
+            overflow: hidden;
+        }
+        .foguete{
+            position: absolute;
+            top: 700px;
+            left: 700px;
+        }
+        .lua{
+            position: absolute;
+            top: 350px;
+            left: 50%;
+            margin-left: -500px;
+        }
+        .terra{
+            position: absolute;
+            top: 200px;
+            left: 20%;
+        }
+        .goku{
+            position: absolute;
+            top:100px;
+            left: 70%;
+        }
+        .barra_branca{
+            position: absolute;
+            top: 720px;
+            width: 400px;
+            height: 70px;
+            background-color: darkblue;
+            color: white;
+            justify-content: center;
+            align-items: center;
+            font-size: 15px;
+            font-family: 'Quicksand', sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <img src="Planeta-Terra.png" class="terra" width="400px">
+    <img src="goku.gif" class="goku" width="300px">
+    <img src="lua-nova.png" class="lua" width="1000px">
+    <img id="foguete" src="foguete.gif" width="80px" class="foguete">
+    
+    
+    <div class="barra_branca">
+        <h1>Kayque Marcelo</h1>
+    </div>
+    
+    <audio id="audio">
+        <source src="contagem_regressiva.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio2">
+        <source src="lancamento_foguete.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio3">
+        <source src="audio.mp3" type="audio/wav">
+    </audio>
+</body>
+<script src="jquery-3.7.0.min.js"></script>  
+<script>
+    var audio = new Audio();
+    audio.src = 'contagem_regressiva.mp3';
+    var audio2 = new Audio();
+    audio2.src = 'lancamento_foguete.mp3';
+    var audio3 = new Audio('we-have-a-problem.mp3');
+    audio2.src = 'audio.mp3';
+    function playAudio() 
+    {
+        audio.play();
+    }
+    setTimeout(playAudio, 500)
+
+    function playAudio2() 
+    {
+        audio2.play();
+    }
+    setTimeout(playAudio2, 15000)
+
+    function pausarAudio()
+    {
+        audio.pause()
+    }
+    setTimeout(pausarAudio, 15000)
+
+    function pausarAudio2()
+    {
+        audio2.pause()
+    }
+    setTimeout(pausarAudio2, 20000)
+    function playAudio3() 
+    {
+        audio3.play();
+    }
+    setTimeout(playAudio3, 20000)
+    function pausarAudio3()
+    {
+        audio2.pause()
+    }
+    setTimeout(pausarAudio3, 25000)
+data = new Date()
+tempo_inicial = data.getTime()
+
+document.onkeydown = Pega_Tecla;
+function Pega_Tecla(e) 
+{   
+    e = e || window.event;
+
+    tecla = e.keyCode;
+    console.log(tecla); // MOSTRA O CÓDIGO DA TECLA PRESSIONADA
+    
+    data = new Date()
+    tempo_final = data.getTime()
+    
+    if(tempo_final-tempo_inicial > 1000)
+    {
+        tempo_inicial = tempo_final
+        if (tecla==37)
+        {
+            x = x - 20
+        }
+        if (tecla==39)
+        {
+            x = x + 20
+        }
+    }
+}
+x = 750
+y = 50
+TOPO = ""
+ESQUERDA = ""
+temporizador2 = setTimeout(Subir, 10000)
+function Subir()
+    {
+        TOPO = y + "px"
+        $("#foguete").animate({top:TOPO}, 1000)
+        temporizador2 = null
+        temporizador2 = setInterval( Descer, 1000)
+
+    }
+function Descer()
+    {
+        y = y + 40
+
+        TOPO = y + "px"
+        ESQUERDA = x + "px"
+        $("#foguete").animate({left:ESQUERDA, top:TOPO}, 1000)
+        
+        if (y > 580)
+        {
+            y = 580
+        }
+    }
+
+</script>
+</html>
